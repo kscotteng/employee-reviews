@@ -11,5 +11,4 @@ attr_reader :name, :email, :phone, :salary
 
 
 
-
 end

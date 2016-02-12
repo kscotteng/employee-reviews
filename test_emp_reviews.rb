@@ -12,14 +12,12 @@ class EmpDepTest < Minitest::Test
 # Create a new department (given its name).
   def test_new_department
     a = Department.new("Engineering")
-    assert a
     assert_equal a.department, "Engineering"
   end
 
 # Create a new employee (given his/her name, email address, phone number, and salary).
   def test_new_employee
     a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
-    assert a
     assert_equal a.name, "John Smith"
     assert_equal a.email, "jsmith@gmail.com"
     assert_equal a.phone, "123.456.7890"
@@ -36,12 +34,20 @@ class EmpDepTest < Minitest::Test
     assert_equal b.deptstaff[0].email, "jsmith@gmail.com"
     assert_equal b.deptstaff[0].phone, "123.456.7890"
     end
-end
-
-
-
 
 # Get an employee's name.
+  def test_getempname
+    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 10000)
+    b = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
+    assert_equal a.name, "John Smith"
+    refute_equal a.name, "Kevin Scott"
+    assert_equal b.name, "John Doe"
+    refute_equal b.name, "Kevin Scott"
+  end
+
+
+end
+
 # Get an employee's salary.
 # Get a department's name.
 # Get a total salary for all employees in a department.
