@@ -37,7 +37,7 @@ class EmpDepTest < Minitest::Test
 
 # Get an employee's name.
   def test_getempname
-    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 10000)
+    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
     b = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
     assert_equal a.name, "John Smith"
     refute_equal a.name, "Kevin Scott"
@@ -45,10 +45,18 @@ class EmpDepTest < Minitest::Test
     refute_equal b.name, "Kevin Scott"
   end
 
-
+# Get an employee's salary.
+  def test_getempsalary
+    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
+    b = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
+    assert_equal a.salary, 100000
+    refute_equal a.salary, 5
+    assert_equal b.salary, 120000
+    refute_equal b.salary, 5
+  end
 end
 
-# Get an employee's salary.
+
 # Get a department's name.
 # Get a total salary for all employees in a department.
 # Add some employee review text (a paragraph or two) to an employee.
