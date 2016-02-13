@@ -77,11 +77,16 @@ class EmpDepTest < Minitest::Test
   end
 
 # Add some employee review text (a paragraph or two) to an employee.
-  # def test_empreviewtext
-  #   a = Department.new ("Development Engineering")
-  #   b = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
-  #
-  # end
+  def test_add_review_text
+    a = Department.new("Development Engineering")
+    b = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
+    c = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
+    review = "abcd"
+    b.emp_review(review)
+    assert_equal "abcd", b.review
+    refute_equal "efgh", b.review
+    refute_equal "abcd", c.review
+  end
 
 end
 
