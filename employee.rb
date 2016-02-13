@@ -7,8 +7,11 @@ attr_reader :name, :email, :phone, :salary
     @email = email
     @phone = phone
     @salary = salary
+    # @review = review
   end
 
+# def emp_review(review)
+#   @review << review
 
 
 end

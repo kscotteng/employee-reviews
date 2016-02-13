@@ -33,7 +33,7 @@ class EmpDepTest < Minitest::Test
     assert_equal b.deptstaff[0].salary, 100000
     assert_equal b.deptstaff[0].email, "jsmith@gmail.com"
     assert_equal b.deptstaff[0].phone, "123.456.7890"
-    end
+  end
 
 # Get an employee's name.
   def test_getempname
@@ -66,21 +66,22 @@ class EmpDepTest < Minitest::Test
   end
 
 # Get a total salary for all employees in a department.
-  def test_getdeptsalary
+  def test_salary_by_dept
     a = Department.new("Development Engineering")
     b = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
     c = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
     a.add_employee(b)
     a.add_employee(c)
-    dept_salary = a.deptstaff[0].salary + a.deptstaff[1].salary
-    assert_equal dept_salary, 220000
-    refute_equal dept_salary, 22000
-    end
+    assert_equal a.salary_by_dept, 220000
+    refute_equal a.salary_by_dept, 22000
+  end
 
 # Add some employee review text (a paragraph or two) to an employee.
-  def 
-
-  end
+  # def test_empreviewtext
+  #   a = Department.new ("Development Engineering")
+  #   b = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
+  #
+  # end
 
 end
 
