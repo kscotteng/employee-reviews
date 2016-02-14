@@ -17,7 +17,7 @@ class EmpDepTest < Minitest::Test
 
 # Create a new employee (given his/her name, email address, phone number, and salary).
   def test_new_employee
-    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
+    a = Employee.new(name: "John Smith", email: "jsmith@gmail.com", phone: "123.456.7890", salary: 100000)
     assert_equal a.name, "John Smith"
     assert_equal a.email, "jsmith@gmail.com"
     assert_equal a.phone, "123.456.7890"
@@ -26,7 +26,7 @@ class EmpDepTest < Minitest::Test
 
 # Add an employee to a department.
   def test_add_emp_to_dept
-    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
+    a = Employee.new(name: "John Smith", email: "jsmith@gmail.com", phone: "123.456.7890", salary: 100000)
     b = Department.new("Development Engineering")
     b.add_employee(a)
     assert_equal b.deptstaff[0].name, "John Smith"
@@ -37,8 +37,8 @@ class EmpDepTest < Minitest::Test
 
 # Get an employee's name.
   def test_getempname
-    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
-    b = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
+    a = Employee.new(name: "John Smith")
+    b = Employee.new(name: "John Doe")
     assert_equal a.name, "John Smith"
     refute_equal a.name, "Kevin Scott"
     assert_equal b.name, "John Doe"
@@ -47,8 +47,8 @@ class EmpDepTest < Minitest::Test
 
 # Get an employee's salary.
   def test_getempsalary
-    a = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
-    b = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
+    a = Employee.new(salary: 100000)
+    b = Employee.new(salary: 120000)
     assert_equal a.salary, 100000
     refute_equal a.salary, 5
     assert_equal b.salary, 120000
@@ -68,8 +68,8 @@ class EmpDepTest < Minitest::Test
 # Get a total salary for all employees in a department.
   def test_salary_by_dept
     a = Department.new("Development Engineering")
-    b = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
-    c = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
+    b = Employee.new(salary: 100000)
+    c = Employee.new(salary: 120000)
     a.add_employee(b)
     a.add_employee(c)
     assert_equal a.salary_by_dept, 220000
@@ -79,19 +79,28 @@ class EmpDepTest < Minitest::Test
 # Add some employee review text (a paragraph or two) to an employee.
   def test_add_review_text
     a = Department.new("Development Engineering")
-    b = Employee.new("John Smith", "jsmith@gmail.com", "123.456.7890", 100000)
-    c = Employee.new("John Doe", "jdoe@gmail.com", "123.456.7897", 120000)
-    review = "abcd"
-    b.emp_review(review)
+    b = Employee.new(name: "John Smith", review: "abcd")
+    c = Employee.new(name: "John Doe", review: "efgh")
     assert_equal "abcd", b.review
     refute_equal "efgh", b.review
     refute_equal "abcd", c.review
+  end
+
+# Mark whether an employee is performing satisfactorily or not satisfactorily.
+  def test_satifactorily_or_not
+    a = Department.new("Development Engineering")
+    b = Employee.new(satisfactorily: "yes")
+    c = Employee.new(name: "John Doe", satisfactorily: "no")
+    assert_equal "yes", b.satisfactorily
+    refute_equal "no", b.satisfactorily
+    assert_equal "no", c.satisfactorily
+    refute_equal "yes", c.satisfactorily
   end
 
 end
 
 
 
-# Mark whether an employee is performing satisfactorily or not satisfactorily.
+
 # Give a raise to an individual. You decide if this makes sense in dollars or in percent.
 # Give raises to a department's employees. You must pass this method a total dollar amount, and it must distribute the raise amounts reasonably to the department's employees. Only employees who are performing satisfactorily should get raises.
